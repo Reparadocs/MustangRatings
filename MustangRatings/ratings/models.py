@@ -29,6 +29,7 @@ class CPairing(models.Model):
    professor = models.ForeignKey(Professor)
    mclass = models.ForeignKey(MClass)
 
+<<<<<<< HEAD
    def getYourAverage(self, user):
       ave = self.getAverage()
       majorAve = user.getMajorAverage()
@@ -37,6 +38,9 @@ class CPairing(models.Model):
       return ave+userAve
 
    def getAverage(self):
+=======
+   def getgAverage():
+>>>>>>> f3683c0a0834c5e4f92fa972fe2faeb361e92141
       total = 0.0
       for rating in self.rating_set:
          total += rating.rating
