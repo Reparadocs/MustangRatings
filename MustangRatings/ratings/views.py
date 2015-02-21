@@ -38,6 +38,7 @@ def pairing_detail(request, cpairing_id):
    gen_ave = pairing.getAverage()
    your_ave = None
    form = None
+   login_url = "/ratings/login/?next=/ratings/detail/"+str(cpairing_id)
    if request.method == 'POST':
       if request.user.is_authenticated():
          form = RatingForm(data=request.POST)
@@ -47,6 +48,6 @@ def pairing_detail(request, cpairing_id):
    if request.user.is_authenticated():
       your_ave = pairing.getYourAverage(request.user.userwrapper)
       form = RatingForm()
-   return render(request, 'detail.html', {'pairing':pairing, 'ave':gen_ave, 'your':your_ave, 'form':form})
+   return render(request, 'detail.html', {'pairing':pairing, 'ave':gen_ave, 'your':your_ave, 'form':form, "login_url":login_url})
 
    

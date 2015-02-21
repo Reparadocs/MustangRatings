@@ -1,1 +1,20 @@
-detail
+
+
+{{pairing.mclass.name}} with {{pairing.professor.name}}
+
+Difficulty Rating: {{ave}}
+
+{% if request.user.is_authenticated %}
+
+Your Estimated Difficulty Rating: {{your}}
+
+Rate This Professor:
+
+{{form.as_p}}
+
+{% else %}
+
+<a href={{login_url}}>Login to get personalized ratings</a>
+
+{%endif%}
+
