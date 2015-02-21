@@ -38,7 +38,7 @@ class CPairing(models.Model):
 
    def getAverage(self):
       total = 0.0
-      for rating in self.rating_set.all()
+      for rating in self.rating_set.all():
          total += rating.rating
 
 class UserWrapper(models.Model):
