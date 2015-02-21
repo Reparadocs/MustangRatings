@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from ratings.forms import RatingForm, ClassForm
 from ratings.models import Professor, Major, Rating, CPairing, MClass
 
 def main(request):
