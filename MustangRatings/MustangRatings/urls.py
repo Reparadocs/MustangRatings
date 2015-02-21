@@ -8,4 +8,5 @@ urlpatterns = patterns('',
 
     url(r'^admin/', include(admin.site.urls)),
     url(r'^ratings/', include('ratings.urls')),
+    url(r'^login/$', 'django.contrib.auth.views.login'),
 )
