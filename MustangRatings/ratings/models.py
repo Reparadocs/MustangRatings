@@ -4,20 +4,39 @@ from django.contrib.auth.models import User
 class Major(models.Model):
    name = models.CharField(max_length=30)
 
+   def getClasses(self):
+      return self.mclass_set
+
 class MClass(models.Model):
    major = models.ForeignKey(Major)
    number = models.CharField(max_length=10)
    name = models.CharField(max_length=50)
 
+   def getProfessors(self):
+      profs = []
+      for cpair in self.cpairing_set:
+         profs.append(cpair.professor)
+      return profs
+
 class Professor(models.Model):
    name = models.CharField(max_length=100)
    polyrating = models.CharField(max_length=10)
+
+   def getPairings(self):
+      return self.cpair_set
 
 class CPairing(models.Model):
    professor = models.ForeignKey(Professor)
    mclass = models.ForeignKey(MClass)
 
-   def getAverage():
+   def getYourAverage(self, user):
+      ave = self.getAverage()
+      majorAve = user.getMajorAverage()
+      genAve = user.getGeneralAverage()
+      userAve = (majorAve*2 + genAve)/3
+      return ave+userAve
+
+   def getAverage(self):
       total = 0.0
       for rating in self.rating_set:
          total += rating.rating
