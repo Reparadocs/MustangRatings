@@ -2,11 +2,11 @@
 
 {% block content %}
 <div class="ui vertical list">
-		{% for professor in professor_list %}
+		{% for pairing in pairing_list %}
 			<div class="item hov-fill">
 				<img class="ui avatar image" src="../static/images/male.jpg">
 			    <div class="content aligned">
-				    <a href="../detail/{{ professor.id }}"> {{ professor.name }} </a>
+				    <a href="../detail/{{ pairing.professor.id }}"> {{ pairing.professor.name }} </a>
 				</div>
 	  		</div>
 		{% endfor %}
