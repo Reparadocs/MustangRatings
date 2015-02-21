@@ -8,7 +8,7 @@ def main(request):
 def professor_list(request):
    professors = Professor.objects.all()
    nprof = []
-   for i in range(10)
+   for i in range(10):
       nprof.append(professors[i])
    return render(request, 'list.html', {'professor_list':nprof})
 
