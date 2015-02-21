@@ -14,7 +14,7 @@ class MClass(models.Model):
 
    def getProfessors(self):
       profs = []
-      for cpair in self.cpairing_set:
+      for cpair in self.cpairing_set.all():
          profs.append(cpair.professor)
       return profs
 
@@ -38,7 +38,7 @@ class CPairing(models.Model):
 
    def getAverage(self):
       total = 0.0
-      for rating in self.rating_set:
+      for rating in self.rating_set.all()
          total += rating.rating
 
 class UserWrapper(models.Model):
@@ -48,7 +48,7 @@ class UserWrapper(models.Model):
       total = 0.0
       stotal = 0.0
       num = 0
-      for rating in self.rating_set:
+      for rating in self.rating_set.all():
          if rating.major is major:
             num += 1
             total += rating.rating
@@ -61,7 +61,7 @@ class UserWrapper(models.Model):
       total = 0.0
       stotal = 0.0
       num = len(self.rating_set.all())
-      for rating in self.rating_set:
+      for rating in self.rating_set.all():
          total += rating.rating
          stotal += rating.cpairing.average
       ave1 = total/num
