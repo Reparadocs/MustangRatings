@@ -13,6 +13,6 @@ def professor_list(request):
    return render(request, 'list.html', {'professor_list':nprof})
 
 def professor_detail(request):
-   professor = Professor.objects.all()[0]
-   return render(request,'detail.html', {'professor':professor})
+   professor = CPairing.objects.all()[0]
+   return render(request,'detail.html', {'cpairing':professor})
 
