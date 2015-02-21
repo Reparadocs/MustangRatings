@@ -1,3 +1,28 @@
 .hov-fill:hover {
 	background-color: #FFFFFF;
 }
+ .top-section {
+ 	width: 100%; 
+    height: 60em; 
+ }
+
+.bg-image {
+  position: relative;
+  background-size: cover;
+}
+.bg-img {
+  background-image: url("../images/background.jpg"); 
+}
+h1#punchline {
+	color: white;
+}
+
+.white {
+	color: white;
+}
+/*
+.darken {
+    position: absolute;
+    background-size: cover;
+	background: rgba(0, 0, 0, 0.5);
+}*/
