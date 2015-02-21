@@ -6,7 +6,8 @@ class Major(models.Model):
 
 class MClass(models.Model):
    major = models.ForeignKey(Major)
-   number = models.IntegerField()
+   number = models.CharField(max_length=10)
+   name = models.CharField(max_length=50)
 
 class Professor(models.Model):
    name = models.CharField(max_length=100)

@@ -35,7 +35,8 @@ class Migration(migrations.Migration):
             name='MClass',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('number', models.IntegerField()),
+                ('number', models.CharField(max_length=10)),
+                ('name', models.CharField(max_length=50)),
                 ('major', models.ForeignKey(to='ratings.Major')),
             ],
             options={
