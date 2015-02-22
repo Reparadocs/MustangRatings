@@ -3,27 +3,17 @@
 {% block content %}
 
 
-{%if form.errors %}
-    <p> Invalid username/password combination, please try again </p>
-    {% endif %}
-<form action="/ratings/login/" method="post">
-    {% csrf_token %}
-    {{form.username.label_tag}}{{form.username}} <br>
-    {{form.password.label_tag}}{{form.password}}  <br>
-    <input type="submit" id="submit" name="submit" value="Sign in" /><br>
-    <input type="hidden" name="next" value="{{ next }}" />        <br>
-</form>
-
 <form action="/ratings/login/" method="post">
  {% csrf_token %}
+
     <div class="ui error form segment">
+            {%if form.errors %}
       <div class="ui error message">
         <div class="header">Action Forbidden</div>
-        <p>You can only sign up for an account once with a given e-mail address.</p>
-      </div>
+    <p> Invalid username/password combination, please try again </p>
+          </div>
+      {%endif%}
       <div class="field">
-        <!-- <label>Username</label>
-        <input placeholder="Username" type="text"> -->
         {{form.username.label_tag}}{{form.username}} <br>
       </div>
       <div class="field">

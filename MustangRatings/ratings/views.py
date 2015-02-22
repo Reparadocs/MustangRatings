@@ -1,8 +1,15 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.core.urlresolvers import reverse
 from django.contrib.auth.forms import UserCreationForm
 from django.http import HttpResponseRedirect
 from ratings.forms import RatingForm, ClassForm
 from ratings.models import Professor, Major, Rating, CPairing, MClass, UserWrapper
+
+def index(request):
+   if request.user.is_authenticated():
+      return redirect(reverse('main'))
+   else:
+      return render(request, 'index.html')
 
 def register(request):
    if request.method == 'POST':

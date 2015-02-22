@@ -1,12 +1,31 @@
-<!DOCTYPE html>
-<html>
-<body>
-    <form action="/ratings/register/" method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" id="submit" name="submit" value="Sign in" />
-        <input type="hidden" name="next" value="{{ next }}" />        
-    </form>
-    <a href="/ratings/login/" id="new">login</a>
-</body>
-</html>
+
+{% extends "base.html" %}
+
+{% block content %}
+
+
+<form action="/ratings/register/" method="post">
+ {% csrf_token %}
+
+    <div class="ui error form segment">
+            {%if form.errors %}
+      <div class="ui error message">
+        <div class="header">Action Forbidden</div>
+    <p> {{form.errors}} </p>
+          </div>
+      {%endif%}
+      <div class="field">
+        {{form.username.label_tag}}{{form.username}} <br>
+      </div>
+      <div class="field">
+        {{form.password1.label_tag}}{{form.password1}}  <br>
+      </div>
+      <div class="field">
+         {{form.password2.label_tag}}{{form.password2}}<br>
+      </div>
+        <input type="submit" id="submit" name="submit" value="Sign in" /><br>
+        <input type="hidden" name="next" value="{{ next }}" />        <br>
+    </div>
+    <a href="/ratings/login/" id="new">Login as existing user</a>
+</form>
+{% endblock %}
