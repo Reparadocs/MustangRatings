@@ -49,6 +49,7 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('name', models.CharField(max_length=100)),
                 ('polyrating', models.CharField(max_length=10)),
+                ('pid', models.CharField(max_length=10)),
             ],
             options={
             },

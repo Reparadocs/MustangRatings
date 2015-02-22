@@ -24,6 +24,7 @@ class MClass(models.Model):
 class Professor(models.Model):
    name = models.CharField(max_length=100)
    polyrating = models.CharField(max_length=10)
+   pid = models.CharField(max_length=10)
 
    def getPairings(self):
       return self.cpair_set
