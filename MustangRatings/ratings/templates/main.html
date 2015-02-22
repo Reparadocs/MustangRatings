@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+<form action="{% url 'main' %}" method="post">
+ {% csrf_token %}
+
+    <div class="ui error form segment">
+            {%if form.errors or formerrors %}
+      <div class="ui error message">
+        <div class="header">Action Forbidden</div>
+    <p> {{form.errors}} 
+        {{formerrors}} </p>
+          </div>
+      {%endif%}
+      <div class="field">
+        {{form.major.label_tag}}{{form.major}} <br>
+      </div>
+      <div class="field">
+        {{form.number.label_tag}}{{form.number}}  <br>
+      </div>
+
+        <input type="submit" id="submit" name="submit" value="Search" /><br>
+        <input type="hidden" name="next" value="{{ next }}" />        <br>
+    </div>
+</form>
+{% endblock %}

@@ -2,26 +2,6 @@
 
 {% block content %}
 
-{{pairing.mclass.name}} with {{pairing.professor.name}}
-
-Difficulty Rating: {{ave}}
-
-{% if user.is_authenticated %}
-
-Your Estimated Difficulty Rating: {{your}}
-
-Rate This Professor:
-
-<form action="{% url 'detail' pairing.id %}" method="post">
-{%csrf_token%}
-{{form.rating.label}}{{form.rating}}
-<input type="submit" value="Submit"/>
-</form>
-{% else %}
-
-<a href={{login_url}}>Login to get personalized ratings</a>
-
-{%endif%}
 
 <div class="ui link cards">
   <div class="card">
@@ -34,7 +14,18 @@ Rate This Professor:
         <a>{{pairing.mclass.name}}</a>
       </div>
       <div class="description">
-       This is where the form or login will go
+      {% if user.is_authenticated %}
+         Your Difficulty Rating: {{your}}
+         <br>
+         Rate This Professor (0-10):
+         <form action="{% url 'detail' pairing.id %}" method="post">
+         {%csrf_token%}
+         {{form.rating}}
+         <input type="submit" value="Submit"/>
+         </form>
+      {%else%}
+      <a href={{login_url}}>Login to get personalized ratings</a>
+      {%endif%}
       </div>
     </div>
     <div class="extra content">
@@ -42,7 +33,7 @@ Rate This Professor:
       </span>
       <span>
         <i class=""></i>
-       Difficulty Rating: {{ave}}
+       Average Difficulty Rating: {{ave}}
       </span>
     </div>
   </div>

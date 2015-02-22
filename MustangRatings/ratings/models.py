@@ -4,6 +4,9 @@ from django.contrib.auth.models import User
 class Major(models.Model):
    name = models.CharField(max_length=30)
 
+   def __unicode__(self):
+      return self.name
+
    def getClasses(self):
       return self.mclass_set
 
@@ -52,14 +55,14 @@ class UserWrapper(models.Model):
       stotal = 0.0
       num = 0
       for rating in self.rating_set.all():
-         if rating.major is major:
+         if rating.major == major:
             num += 1
             total += rating.rating
-            stotal += rating.cpairing.average
+            stotal += rating.cpairing.getAverage()
       if num == 0:
          return 0
-      ave1 = total/num
-      ave2 = stotal/num
+      ave1 = total/float(num)
+      ave2 = stotal/float(num)
       return ave1-ave2
    
    def getGeneralAverage(self):
@@ -71,8 +74,8 @@ class UserWrapper(models.Model):
          stotal += rating.cpairing.getAverage()
       if num == 0:
          return 0
-      ave1 = total/num
-      ave2 = stotal/num
+      ave1 = total/float(num)
+      ave2 = stotal/float(num)
       return ave1-ave2
 
 class Rating(models.Model):

@@ -24,16 +24,20 @@ def register(request):
    return render(request, "registration/register.html", {'form': form,})
 
 def main(request):
+   formerrors = None
    if request.method == 'POST':
       form = ClassForm(data=request.POST)
       if form.is_valid():
          c = MClass.objects.filter(major=form.cleaned_data['major'])
-         c = c.objects.get(number=form.cleaned_data['number'])
-         return redirect(reverse('professor_list', args=(c[0].id,)))
+         c = c.filter(number=form.cleaned_data['number'])
+         if len(c) == 1:
+            return redirect(reverse('ratings.views.professor_list', args=(c[0].id,)))
+         else:
+            formerrors = "No class exists with that number"
    else:
       form = ClassForm()
-      majors = Major.objects.all()
-   return render(request, 'main.html', {'major_list': majors,'form':form})
+   majors = Major.objects.all()
+   return render(request, 'main.html', {'major_list': majors,'form':form,'formerrors':formerrors})
 
 def professor_list(request, class_id):
    c = MClass.objects.get(id=class_id)
@@ -42,7 +46,6 @@ def professor_list(request, class_id):
 
 def pairing_detail(request, cpairing_id):
    pairing = CPairing.objects.get(id=cpairing_id)
-   gen_ave = pairing.getAverage()
    your_ave = None
    form = None
    login_url = "/ratings/login/?next=/ratings/detail/"+str(cpairing_id)
@@ -53,8 +56,10 @@ def pairing_detail(request, cpairing_id):
             r = Rating(owner=request.user.userwrapper, rating=form.cleaned_data['rating'], cpairing=pairing, major=pairing.mclass.major)
             r.save()
    if request.user.is_authenticated():
-      your_ave = pairing.getYourAverage(request.user.userwrapper)
+      your_ave = "%.2f" % pairing.getYourAverage(request.user.userwrapper)
       form = RatingForm()
+   gen_ave = "%.2f"%pairing.getAverage()
+
    return render(request, 'detail.html', {'pairing':pairing, 'ave':gen_ave, 'your':your_ave, 'form':form, "login_url":login_url})
 
    
