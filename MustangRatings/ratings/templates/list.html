@@ -2,10 +2,11 @@
 
 {% block content %}
 <div class="list-div">
-	<div class="ui two column grid">
+	<div class="ui three column grid">
+	<center><h4>Professors teaching {{mclass.name}}</h4></center>
 	{% for pairing in pairing_list %}
 	  <div class="column">
-	    <div class="ui fluid card">
+	    <div class="ui fluid card animated fadeIn">
 	      <div class="image">
 	        <img src="../../static/images/male.jpg">
 	      </div>

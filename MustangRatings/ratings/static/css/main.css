@@ -21,13 +21,18 @@ h1#punchline {
 	color: white;
 }
 .ui.link.cards {
-	padding-left: 40%;
+  padding-left: 40%;
+  margin-top: 50px;
+}
+.ui.three.column.grid {
+  padding-left: 300px;
+  padding-right: 300px;
+  margin-top: 50px;
 }
 
-.ui.two.column.grid {
-  padding-left: 448px;
-  padding-right: 488px;
-  margin-top: 50px;
+.form-view {
+padding-left: 500px;
+padding-right: 500px;
 }
 /*
 .darken {
