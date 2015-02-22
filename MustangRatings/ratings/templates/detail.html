@@ -12,8 +12,10 @@ Your Estimated Difficulty Rating: {{your}}
 
 Rate This Professor:
 
-{{form.as_p}}
-
+<form action="{% url 'ratings.views.detail' pairing.id %}" method="post">
+{{form.rating.label}}{{form.rating}}
+<input type="submit" value="Submit"/>
+</form>
 {% else %}
 
 <a href={{login_url}}>Login to get personalized ratings</a>
