@@ -3,7 +3,7 @@
 
 {% block content %}
 
-
+<div class="form-view">
 <form action="/ratings/register/" method="post">
  {% csrf_token %}
 
@@ -23,9 +23,12 @@
       <div class="field">
          {{form.password2.label_tag}}{{form.password2}}<br>
       </div>
-        <input type="submit" id="submit" name="submit" value="Sign in" /><br>
+        <center><input type="submit" id="submit" name="submit" value="Sign in" /></center><br>
         <input type="hidden" name="next" value="{{ next }}" />        <br>
     </div>
-    <a href="/ratings/login/" id="new">Login as existing user</a>
+    <center>
+    <a href="/ratings/login/" id="new">I already have an account</a>
+    </center>
 </form>
+</div>
 {% endblock %}
