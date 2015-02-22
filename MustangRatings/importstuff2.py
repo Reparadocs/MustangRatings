@@ -1,7 +1,7 @@
 from ratings.models import Major, Professor, CPairing, MClass
 import json
 
-rf = open('realdata/polydump.json','r')
+rf = open('realdata/newpolydump.json','r')
 
 print 'hello'
 
@@ -14,7 +14,7 @@ for line in rf:
    num += 1
    l = line.strip()
    d = json.loads(l)
-   p = Professor(name = d['first_name'] + " " + d['last_name'], polyrating = d['rating'])
+   p = Professor(name = d['first_name'] + " " + d['last_name'], polyrating = d['rating'], pid=d['pid'])
    p.save()
    for c in d['classes']:
       cla = MClass.objects.get(name=c)
