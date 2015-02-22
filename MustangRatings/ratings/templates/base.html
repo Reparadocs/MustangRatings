@@ -46,7 +46,11 @@ Released   : 20130121
     <ul class="right">
       <li class=""><a href="http://localhost:8000/ratings">Search</a></li>
       <li class="">
+      {% if not user.is_authenticated %}
         <a href="http://localhost:8000/ratings/login/">Login</a>
+      {% else %}
+         <a href="http://localhost:8000/ratings/logout/">Logout</a>
+      {% endif %}
       </li>
       <li class="active"><a href="http://localhost:8000/ratings/register/">Register</a></li>
     </ul>
