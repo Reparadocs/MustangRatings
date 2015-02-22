@@ -1,20 +1,37 @@
-<!DOCTYPE html>
-<html>
-<body>
-    {%if form.errors %}
-        <p> Invalid username/password combination, please try again </p>
-            {% endif %}
+{% extends "base.html" %}
 
-                <h1>Welcome to My Site!</h1>
-                    <form action="/ratings/login/" method="post">
-                        {% csrf_token %}
-                                {{form.username.label_tag}}{{form.username}}
-                                        {{form.password.label_tag}}{{form.password}}
-                                                <input type="submit" id="submit" name="submit" value="Sign in" />
-                                                        <input type="hidden" name="next" value="{{ next }}" />        
-                                                            </form>
-                                                                <a href="password_reset/" id="forgot"> forgot username/password</a><br />
-                                                                    <a href="register" id="new">new user</a>
-                                                                    </body>
-                                                                    </html>
+{% block content %}
 
+
+{%if form.errors %}
+    <p> Invalid username/password combination, please try again </p>
+    {% endif %}
+<form action="/ratings/login/" method="post">
+    {% csrf_token %}
+    {{form.username.label_tag}}{{form.username}} <br>
+    {{form.password.label_tag}}{{form.password}}  <br>
+    <input type="submit" id="submit" name="submit" value="Sign in" /><br>
+    <input type="hidden" name="next" value="{{ next }}" />        <br>
+</form>
+
+<form action="/ratings/login/" method="post">
+ {% csrf_token %}
+    <div class="ui error form segment">
+      <div class="ui error message">
+        <div class="header">Action Forbidden</div>
+        <p>You can only sign up for an account once with a given e-mail address.</p>
+      </div>
+      <div class="field">
+        <!-- <label>Username</label>
+        <input placeholder="Username" type="text"> -->
+        {{form.username.label_tag}}{{form.username}} <br>
+      </div>
+      <div class="field">
+        {{form.password.label_tag}}{{form.password}}  <br>
+      </div>
+        <input type="submit" id="submit" name="submit" value="Sign in" /><br>
+        <input type="hidden" name="next" value="{{ next }}" />        <br>
+    </div>
+    <a href="/ratings/register/" id="new">new user</a>
+</form>
+{% endblock %}

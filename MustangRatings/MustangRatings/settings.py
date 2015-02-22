@@ -19,6 +19,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '1ygndo9#7anf8v2mq4g3kgd!msx+oo8kh71h$n=kwj7^-889qf'
 
+LOGIN_REDIRECT_URL = "/ratings/"
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 

@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <form action="/ratings/register/" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" id="submit" name="submit" value="Sign in" />
+        <input type="hidden" name="next" value="{{ next }}" />        
+    </form>
+    <a href="/ratings/login/" id="new">login</a>
+</body>
+</html>

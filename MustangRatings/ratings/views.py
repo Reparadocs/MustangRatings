@@ -1,6 +1,20 @@
 from django.shortcuts import render
+from django.contrib.auth.forms import UserCreationForm
+from django.http import HttpResponseRedirect
 from ratings.forms import RatingForm, ClassForm
-from ratings.models import Professor, Major, Rating, CPairing, MClass
+from ratings.models import Professor, Major, Rating, CPairing, MClass, UserWrapper
+
+def register(request):
+   if request.method == 'POST':
+      form = UserCreationForm(request.POST)
+      if form.is_valid():
+         new_user = form.save()
+         wrapper = UserWrapper(owner=new_user)
+         wrapper.save()
+         return HttpResponseRedirect("/ratings/")
+   else:
+      form = UserCreationForm()
+   return render(request, "registration/register.html", {'form': form,})
 
 def main(request):
    if request.method == 'POST':

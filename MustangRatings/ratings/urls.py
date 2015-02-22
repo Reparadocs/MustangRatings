@@ -6,5 +6,6 @@ urlpatterns = patterns('',
    url(r'^list/(?P<class_id>[0-9]+)$', views.professor_list, name='list'),
    url(r'^detail/(?P<cpairing_id>[0-9]+)$', views.pairing_detail, name='detail'),
    url(r'^login/$', 'django.contrib.auth.views.login'),
-   url(r'^register/$', 'django.contrib.auth.views.register'),
+   url(r'^logout/$', 'django.contrib.auth.views.logout'),
+   url(r'^register/$', views.register, name='register'),
 )
