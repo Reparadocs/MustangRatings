@@ -3,6 +3,7 @@
 {% block content %}
 
 
+<div class="form-view">
 <form action="{% url 'main' %}" method="post">
  {% csrf_token %}
 
@@ -25,4 +26,5 @@
         <input type="hidden" name="next" value="{{ next }}" />        <br>
     </div>
 </form>
+</div>
 {% endblock %}
