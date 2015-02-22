@@ -31,7 +31,7 @@ class CPairing(models.Model):
 
    def getYourAverage(self, user):
       ave = self.getAverage()
-      majorAve = user.getMajorAverage()
+      majorAve = user.getMajorAverage(self.mclass.major)
       genAve = user.getGeneralAverage()
       userAve = (majorAve*2 + genAve)/3
       return ave+userAve
@@ -40,6 +40,9 @@ class CPairing(models.Model):
       total = 0.0
       for rating in self.rating_set.all():
          total += rating.rating
+      if total == 0:
+         return 0
+      return total/len(self.rating_set.all())
 
 class UserWrapper(models.Model):
    owner = models.OneToOneField(User)
@@ -53,6 +56,8 @@ class UserWrapper(models.Model):
             num += 1
             total += rating.rating
             stotal += rating.cpairing.average
+      if num == 0:
+         return 0
       ave1 = total/num
       ave2 = stotal/num
       return ave1-ave2
@@ -64,6 +69,8 @@ class UserWrapper(models.Model):
       for rating in self.rating_set.all():
          total += rating.rating
          stotal += rating.cpairing.average
+      if num == 0:
+         return 0
       ave1 = total/num
       ave2 = stotal/num
       return ave1-ave2
