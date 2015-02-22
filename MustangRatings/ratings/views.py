@@ -50,7 +50,7 @@ def pairing_detail(request, cpairing_id):
       if request.user.is_authenticated():
          form = RatingForm(data=request.POST)
          if form.is_valid():
-            r = Rating(owner=request.user.userwrapper, rating=rating, cpairing=pairing, major=pairing.major)
+            r = Rating(owner=request.user.userwrapper, rating=form.cleaned_data['rating'], cpairing=pairing, major=pairing.mclass.major)
             r.save()
    if request.user.is_authenticated():
       your_ave = pairing.getYourAverage(request.user.userwrapper)

@@ -10,7 +10,8 @@ Your Estimated Difficulty Rating: {{your}}
 
 Rate This Professor:
 
-<form action="{% url 'ratings.views.detail' pairing.id %}" method="post">
+<form action="{% url 'detail' pairing.id %}" method="post">
+{%csrf_token%}
 {{form.rating.label}}{{form.rating}}
 <input type="submit" value="Submit"/>
 </form>

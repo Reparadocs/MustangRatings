@@ -68,7 +68,7 @@ class UserWrapper(models.Model):
       num = len(self.rating_set.all())
       for rating in self.rating_set.all():
          total += rating.rating
-         stotal += rating.cpairing.average
+         stotal += rating.cpairing.getAverage()
       if num == 0:
          return 0
       ave1 = total/num
