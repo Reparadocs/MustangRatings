@@ -20,6 +20,9 @@ h1#punchline {
 .white {
 	color: white;
 }
+.ui.link.cards {
+	padding-left: 40%;
+}
 /*
 .darken {
     position: absolute;
